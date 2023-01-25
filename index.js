@@ -51,9 +51,9 @@ const morseCodes = {
 }
 
 let symbols = [];
+let letterButtons = ["a","a","a","a","a","a","a","a"];
+
 for(const [letter, code] of Object.entries(morseCodes)){
-  console.log("Letter:" + letter);
-  console.log("Code: " + code)
   symbols.push([letter, code]);
 };
 console.log("Symbols: " + symbols);
@@ -65,8 +65,12 @@ let allowEntry = true;
 const displayElement = document.getElementById("displayElement");
 const hintElement = document.getElementById("hintElement");
 const rewardElement = document.getElementById("rewardElement");
+const letterButtonArea = document.getElementById("letterButtons");
+const codeButtonArea = document.getElementById("codeButtons");
+
 const numSymbols = symbols.length;
 const REWARD_TIME = 2000;
+const HINT_TIME = 2000;
 
 let transmitMode = true;
 
@@ -89,8 +93,6 @@ function enterDah(){
 function checkAnswer(){
   displayElement.innerHTML = currentEntry;
   if(transmitMode){
-    console.log("entry: " + currentEntry);
-    console.log("symbol: " + currentSymbol[1])
     if(currentEntry.length === currentSymbol[1].length){
       if(currentEntry === currentSymbol[1]){
         allowEntry = false;
@@ -130,24 +132,41 @@ function reset(reuseSymbol){
     hintElement.innerHTML = currentSymbol[1];
   }
   rewardElement.innerHTML = "";
+  randomizeLetterButtons();
 }
 
 function playDit(){
-    console.log("dit");
     ditSound.play();
 }
 
 function playDah(){
-  console.log("dah");
   dahSound.play();
+}
+
+function pressLetter(letter){
+  console.log("You pressed the letter " + letter);
 }
 
 function selectRandomSymbol(){
   currentSymbol = symbols[Math.floor(Math.random() * numSymbols)];
-  console.log("current symbol: " + currentSymbol);
+}
+
+function randomizeLetterButtons(){
+  for(let i = 0; i < letterButtons.length; i++){
+    let newLetter = symbols[Math.floor(Math.random() * numSymbols)][0];
+    console.log("new letter button: " + newLetter);
+    letterButtons[i] = newLetter;
+    letterButtonArea.children[i].innerHTML = newLetter
+  }
+}
+
+function showHint(){
+  hintElement.innerHTML = currentSymbol[1];
+  setTimeout(() => {
+    hintElement.innerHTML = "";
+  }, HINT_TIME)
 }
 
 reset();
-
 
 
