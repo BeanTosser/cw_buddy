@@ -1,0 +1,36 @@
+button{
+    background-color: #eeeeff;
+    padding: 25px;
+}
+
+button:disabled {
+    background-color: #999999;
+}
+
+.prompt{
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.even_spaced_horizontal_button_area{
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+.even_spaced_horizontal_button_area > *{
+    flex: 0.9;
+}
+
+body {
+    text-align: center;
+}
+
+.phone_frame {
+    width: 360px;
+    height: 800px;
+    background-color:cornsilk;
+    margin: 0 auto;
+}
+
+
