@@ -73,7 +73,7 @@ const displayElement = document.getElementById("displayElement");
 const promptElement = document.getElementById("promptElement");
 const rewardElement = document.getElementById("rewardElement");
 const hintElement = document.getElementById("hintElement");
-const letterButtonArea = document.getElementById("letterButtons");
+const letterButtonArea = document.getElementById("letter_buttons");
 const codeButtonArea = document.getElementById("codeButtons");
 
 const transmitButton = document.getElementById("transmit_button");
@@ -208,37 +208,40 @@ function randomizeLetterButtons(){
       newLetter = newLetter.toUpperCase();
     }
     letterButtons[i] = newLetter;
-    if(i <4){
-      letterButtonArea.children[i].innerHTML = newLetter;
-    } else {
-      letterButtonArea.children[i+1].innerHTML = newLetter;
-    }
+    letterButtonArea.children[i].innerHTML = newLetter;
+
   }
 }
 
 function showHint(){
   if(transmitMode){
-    hintElement.innerHTML = currentSymbol[1];
+    promptElement.innerHTML = currentSymbol[1];
   } else {
-    hintElement.innerHTML = currentSymbol[0];
+    promptElement.innerHTML = currentSymbol[0];
     playFullCode();
   }
+  promptElement.style.color = "red";
   setTimeout(() => {
-    hintElement.innerHTML = "";
+    if(transmitMode){
+      promptElement.innerHTML = currentSymbol[0];
+    } else {
+      promptElement.innerHTML = currentSymbol[1];
+    }
+    promptElement.style.color="black";
   }, prompt_TIME)
 }
 
 function switchMode(){
   if(transmitMode){
     transmitMode = false;
-    letterButtonArea.style.display = "inline";
+    letterButtonArea.style.display = "grid";
     codeButtonArea.style.display = "none";
     transmitButton.removeAttribute("disabled");
     receiveButton.setAttribute("disabled","");
   } else{
     transmitMode = true;
     letterButtonArea.style.display = "none";
-    codeButtonArea.style.display = "inline";
+    codeButtonArea.style.display = "grid";
     transmitButton.setAttribute("disabled","");
     receiveButton.removeAttribute("disabled");
   }
