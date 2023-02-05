@@ -9,8 +9,12 @@ button{
 .title_area{
     font-size: 2rem;
     font-weight: bold;
+    line-height: 1;
     font-family: 'Kanit', sans-serif;
-    background-color: #fbffbc
+    background-color: #fbffbc;
+    height: 15%;
+    display: flex;
+    justify-content: center;
 }
 
 button:disabled {
@@ -25,23 +29,29 @@ button:disabled {
 div.mode_button_area{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 2%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
     margin-top: 0;
     padding-top: 10;
+}
+
+div.mode_button_area > *:nth-child(1){
+    border-right: 0;
 }
 
 #letter_buttons{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 2%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-
 }
 
-
+#letter_buttons > *:nth-child(n+5){
+    border-top: 0px;
+}
+#letter_buttons > *:nth-child(-n+2){
+    border-right: 0px;
+}
+#letter_buttons > *:nth-child(-n-3){
+    border-right: 0px;
+    background-color:blanchedalmond
+}
 
 body {
     text-align: center;
